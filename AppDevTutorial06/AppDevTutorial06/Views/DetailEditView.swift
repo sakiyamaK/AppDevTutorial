@@ -1,16 +1,19 @@
 import SwiftUI
 
+final class Hoge {
+    var value: Int = 0
+}
+
 struct DetailEditView: View {
-    @State private var scrum = DailyScrum.emptyScrum
+    /*
+     ********** 解説 **********
+
+     外から値を紐付けるのでBindingに変更
+     */
+    @Binding var scrum: DailyScrum
     @State private var newAttendeeName = ""
 
     var body: some View {
-        /*
-         ********** 解説 **********
-
-         FormはListと同じく要素を縦に並べる
-         Listと違ってユーザの入力を受け付けるように特化している
-         */
         Form {
             Section {
                 TextField("Title", text: $scrum.title)
@@ -23,6 +26,7 @@ struct DetailEditView: View {
 
                     Text("\(scrum.lengthInMinutes) minutes")
                 }
+                ThemePicker(selection: $scrum.theme)
             } header: {
                 Text("Meeting Info")
             }
@@ -57,5 +61,5 @@ struct DetailEditView: View {
 
 
 #Preview {
-    DetailEditView()
+    DetailEditView(scrum: .constant(DailyScrum.sampleData[0]))
 }

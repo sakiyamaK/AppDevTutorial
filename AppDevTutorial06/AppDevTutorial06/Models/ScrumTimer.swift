@@ -1,5 +1,21 @@
 import Foundation
 
+/*
+ ********** 解説 **********
+ ObservableObjectはSwiftUIと同時に発表されてCombineフレームワークの機能(++++ SwiftUIの機能ではない ++++)
+ 値の監視といったこれまでStateやBindingでやっていた機能のclass版
+ SwiftUI以外でも使える(UIKitやサーバーサイドSwiftなどなど)
+
+ StructならStateやBinding
+ classならObservableObject
+ と、ひとまず覚えよう
+
+ ただしAppleはその後Observationフレームワークという後継機能を出した
+ https://developer.apple.com/documentation/observation
+
+ SwiftUIががっつりCombineありきで作られたが、勝手な予想だがCombineは消していくのかもしれない
+ */
+
 @MainActor
 final class ScrumTimer: ObservableObject {
     struct Speaker: Identifiable {
@@ -7,7 +23,11 @@ final class ScrumTimer: ObservableObject {
         var isCompleted: Bool
         let id = UUID()
     }
-    
+
+    /*
+     ********** 解説 **********
+     @Publishedがついているものが監視対象となる     
+     */
     @Published var activeSpeaker = ""
     @Published var secondsElapsed = 0
     @Published var secondsRemaining = 0

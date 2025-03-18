@@ -60,6 +60,7 @@ extension DailyScrum {
     /*
      ********** 解説 **********
      追加
+     新規の空のデータを用意する時のデフォルト
      */
     static var emptyScrum: DailyScrum {
         DailyScrum(title: "", attendees: [], lengthInMinutes: 5, theme: .sky)

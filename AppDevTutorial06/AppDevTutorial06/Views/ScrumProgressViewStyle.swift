@@ -1,7 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-*/
-
 import SwiftUI
 
 struct ScrumProgressViewStyle: ProgressViewStyle {
@@ -12,24 +8,47 @@ struct ScrumProgressViewStyle: ProgressViewStyle {
             RoundedRectangle(cornerRadius: 10.0)
                 .fill(theme.accentColor)
                 .frame(height: 20.0)
-            if #available(iOS 15.0, *) {
-                ProgressView(configuration)
-                    .tint(theme.mainColor)
-                    .frame(height: 12.0)
-                    .padding(.horizontal)
-            } else {
-                ProgressView(configuration)
-                    .frame(height: 12.0)
-                    .padding(.horizontal)
-            }
+
+            ProgressView(configuration)
+                .tint(theme.mainColor)
+                .frame(height: 12.0)
+                .padding(.horizontal)
         }
     }
 }
 
-struct ScrumProgressViewStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        ProgressView(value: 0.4)
-            .progressViewStyle(ScrumProgressViewStyle(theme: .buttercup))
-            .previewLayout(.sizeThatFits)
+#Preview(traits: .sizeThatFitsLayout) {
+    ProgressView(value: 0.4)
+        .progressViewStyle(ScrumProgressViewStyle(theme: .buttercup))
+}
+
+
+/*
+ ********** 解説 **********
+ 今回の例だと別にScrumProgressViewStyleを用意しなくても
+ 他のコンポーネントと同じようにこうしてViewを増やせば良いと思う
+
+ そうしなかったのはProgressViewには自前のスタイルを適応できるってことを
+ Appleが伝えたかったんだと思う
+*/
+
+struct ScrumProgressView: View {
+    var value: Double
+    var theme: Theme
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10.0)
+                .fill(theme.accentColor)
+                .frame(height: 20.0)
+            ProgressView(value: value)
+                .tint(theme.mainColor)
+                .frame(height: 12.0)
+                .padding(.horizontal)
+        }
     }
+}
+
+#Preview(traits: .sizeThatFitsLayout) {
+    ScrumProgressView(value: 0.4, theme: .buttercup)
 }

@@ -1,9 +1,9 @@
-/*
- See LICENSE folder for this sample’s licensing information.
- */
-
 import SwiftUI
 
+/*
+ ********** 解説 **********
+ MeetingViewがが巨大になってきたので分けた
+*/
 struct MeetingFooterView: View {
     let speakers: [ScrumTimer.Speaker]
     var skipAction: ()->Void
@@ -38,10 +38,6 @@ struct MeetingFooterView: View {
         .padding([.bottom, .horizontal])
     }
 }
-
-struct MeetingFooterView_Previews: PreviewProvider {
-    static var previews: some View {
-        MeetingFooterView(speakers: DailyScrum.sampleData[0].attendees.speakers, skipAction: {})
-            .previewLayout(.sizeThatFits)
-    }
+#Preview(traits: .sizeThatFitsLayout) {
+    MeetingFooterView(speakers: DailyScrum.sampleData[0].attendees.speakers, skipAction: {})
 }

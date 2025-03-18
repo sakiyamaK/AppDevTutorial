@@ -1,14 +1,13 @@
 import SwiftUI
 
 struct DetailView: View {
-    @Binding var scrum: DailyScrum
-
     /*
      ********** 解説 **********
-     追記する
 
-     @StateについてはDetailEditViewで解説
+     外から値を紐付けるのでBindingに変更
      */
+    @Binding var scrum: DailyScrum
+    @State private var editingScrum: DailyScrum = .emptyScrum
     @State private var isPresentingEditView = false
 
     var body: some View {
@@ -48,12 +47,13 @@ struct DetailView: View {
         .navigationTitle(scrum.title)
         .toolbar {
             Button("Edit") {
-                isPresentingEditView = true
+                isPresentingEditView = true                
+                editingScrum = scrum
             }
         }
         .sheet(isPresented: $isPresentingEditView) {
             NavigationStack {
-                DetailEditView()
+                DetailEditView(scrum: $editingScrum)
                     .navigationTitle(scrum.title)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
@@ -63,7 +63,6 @@ struct DetailView: View {
                         }
                     }
             }
-//                DetailEditView()
         }
 
     }

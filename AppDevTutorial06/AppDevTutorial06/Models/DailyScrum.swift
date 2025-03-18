@@ -21,19 +21,6 @@ struct DailyScrum: Identifiable {
     var attendees: [Attendee]
     var lengthInMinutes: Int
 
-    /*
-     ********** 解説 **********
-     サンプルではこうしているが、上記のIntのextensionを増やした方が何かと楽
-     */
-//    var lengthInMinutesAsDouble: Double {
-//        get {
-//            Double(lengthInMinutes)
-//        }
-//        set {
-//            lengthInMinutes = Int(newValue)
-//        }
-//    }
-
     var theme: Theme
 
     init(id: UUID = UUID(), title: String, attendees: [String], lengthInMinutes: Int, theme: Theme) {
@@ -57,10 +44,6 @@ extension DailyScrum {
         }
     }
 
-    /*
-     ********** 解説 **********
-     追加
-     */
     static var emptyScrum: DailyScrum {
         DailyScrum(title: "", attendees: [], lengthInMinutes: 5, theme: .sky)
     }

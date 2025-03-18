@@ -1,9 +1,8 @@
-/*
- See LICENSE folder for this sample’s licensing information.
- */
-
 import SwiftUI
-
+/*
+ ********** 解説 **********
+ MeetingViewがが巨大になってきたので分けた
+*/
 struct MeetingHeaderView: View {
     let secondsElapsed: Int
     let secondsRemaining: Int
@@ -22,8 +21,18 @@ struct MeetingHeaderView: View {
     
     var body: some View {
         VStack {
+            /*
+             ********** 解説 **********
+             ProgressViewの見た目を変更するにはproguressViewStyleに適応したらいいらしい
+             デフォルトでもいくつかのスタイルが用意されている
+
+             今回の例だと別に時前のstyleを用意する意味はなさそう...
+            */
             ProgressView(value: progress)
                 .progressViewStyle(ScrumProgressViewStyle(theme: theme))
+
+//            ScrumProgressView(value: progress, theme: theme)
+
             HStack {
                 VStack(alignment: .leading) {
                     Text("Seconds Elapsed")
@@ -46,9 +55,6 @@ struct MeetingHeaderView: View {
     }
 }
 
-struct MeetingHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        MeetingHeaderView(secondsElapsed: 60, secondsRemaining: 180, theme: .bubblegum)
-            .previewLayout(.sizeThatFits)
-    }
+#Preview(traits: .sizeThatFitsLayout) {
+    MeetingHeaderView(secondsElapsed: 60, secondsRemaining: 180, theme: .bubblegum)
 }
