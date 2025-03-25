@@ -6,13 +6,15 @@ Timer.scheduledTimerを使った定期的なメソッドの実行
 
 HashableとIdentifiable
 
-StateObjectとObservableObject
+Observationフレームワークによるclassのパラメータの追跡
 
 nonisolatedとMainActor
 
 # 参考
 
 https://developer.apple.com/tutorials/app-dev-training/managing-state-and-life-cycle
+
+https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro
 
 # 説明資料
 

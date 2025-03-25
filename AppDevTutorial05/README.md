@@ -16,7 +16,7 @@ https://developer.apple.com/tutorials/app-dev-training/creating-the-edit-view
 ---- Bindingじゃない場合 ---
 
 struct CopyView: View {
-    @var copyValue: Int
+    var copyValue: Int
 
     var body: some View {
         Text("Copy: \(copyValue)")

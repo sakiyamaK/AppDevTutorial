@@ -1,13 +1,24 @@
 import SwiftUI
 
 struct DetailEditView: View {
+    @Binding var scrum: DailyScrum
     /*
      ********** 解説 **********
 
-     外から値を紐付けるのでBindingに変更
+     (DailyScrum) -> Void
+
+     クロージャと呼ばれる機能
+     C言語の頃からあるっちゃある(関数ポインタと呼ばれる)
+     プログラミング言語仕様の山場のひとつ
+     ひとまず今は中身がないけどこういう関数を定義したと思えばいい
+     func saveEdits(_ value: DailyScrum)
+
+     https://note.com/sakiyamak/n/nf40752b88f98
      */
-    @Binding var scrum: DailyScrum
+    let saveEdits: (DailyScrum) -> Void
     @State private var newAttendeeName = ""
+
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         Form {
@@ -52,10 +63,52 @@ struct DetailEditView: View {
                 Text("Attendees")
             }
         }
+        .toolbar {
+            /*
+             ********** 解説 **********
+
+             ツールバーが複雑になってきたからこっちに持ってきた
+
+             だけどNavigationStackから呼び出さないとtoolbarは表示されない
+             そのためここのPreviewでは表示されないので注意
+             */
+
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Done") {
+                    saveEdits(scrum)
+                    dismiss()
+                }
+            }
+        }
     }
 }
 
 
 #Preview {
-    DetailEditView(scrum: .constant(DailyScrum.sampleData[0]))
+    @Previewable @State var scrum = DailyScrum.sampleData[0]
+
+    /*
+     ********** 解説 **********
+
+     saveEdits: { _ in
+     }
+     の
+     { _ in
+     }
+     この部分がsaveEditsの関数の中身
+
+     つまり
+     普通の関数と違って
+     structやclassのインスタンス生成時に中身を決めることができる
+     */
+
+    DetailEditView(scrum: $scrum, saveEdits: { _ in
+        print("save !!")
+    })
+
 }

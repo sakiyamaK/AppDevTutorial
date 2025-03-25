@@ -13,7 +13,7 @@ struct MeetingView: View {
      追記
     */
     @Binding var scrum: DailyScrum
-    @StateObject var scrumTimer = ScrumTimer()
+    @State var scrumTimer = ScrumTimer()
     private var player: AVPlayer { AVPlayer.sharedDingPlayer }
 
     var body: some View {

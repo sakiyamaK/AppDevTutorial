@@ -1,21 +1,5 @@
 import Foundation
 
-/*
- ********** 解説 **********
- ObservableObjectはSwiftUIと同時に発表されてCombineフレームワークの機能(++++ SwiftUIの機能ではない ++++)
- 値の監視といったこれまでStateやBindingでやっていた機能のclass版
- SwiftUI以外でも使える(UIKitやサーバーサイドSwiftなどなど)
-
- だけどAppleはその後iOS17から使えるObservationフレームワークという後継機能を出した
- これもSwiftUI以外でも使える(UIKitやサーバーサイドSwiftなどなど)
- https://developer.apple.com/documentation/observation
-
- SwiftUIががっつりCombineありきで作られたが、勝手な予想だがCombineは消していくのかもしれない
-公式サンプルはObservableObjectで書かれているがここでは以下の移行手順に習って書き換えたObservationフレームワークを使う
-
- https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro
- */
-
 @MainActor
 @Observable
 final class ScrumTimer {
