@@ -8,4 +8,10 @@ XcodePreviewでサイズ変更とダークモードの確認
 
 # 参考
 
-https://developer.apple.com/tutorials/app-dev-training/using-stacks-to-arrange-views
+https://developer.apple.com/tutorials/app-dev-training/creating-a-card-view
+
+# 補足
+
+公式ではローカルなファイルのThemeKitを用意して、SwiftPackageManagerを使って読み込みしているが、そこまでするほどではないので使わない
+
+外部ライブラリの入れ方は別で説明する

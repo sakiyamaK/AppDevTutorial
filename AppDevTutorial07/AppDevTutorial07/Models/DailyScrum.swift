@@ -2,9 +2,8 @@ import Foundation
 /*
  ********** 解説 **********
 
- 公式のミス
- import ThemeKit
- なんてない
+ 公式ではSPMでThemeKitを使っているが普通にファイルをプロジェクトに登録しているので、 import ThemeKitはいらない
+
  */
 
 extension Int {
