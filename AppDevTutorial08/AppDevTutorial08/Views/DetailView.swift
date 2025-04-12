@@ -2,14 +2,19 @@ import SwiftUI
 import SwiftData
 
 struct DetailView: View {
+    /*
+     ********** 解説 **********
+
+     詳細に表示するscrumを外部から受け取って画面に表示させる
+     */
     let scrum: DailyScrum
     @State private var isPresentingEditView = false
-
+    
     var body: some View {
         List {
             Section {
                 NavigationLink(destination: MeetingView(scrum: scrum)) {
-                                     }
+                }
                 HStack {
                     Label("Length", systemImage: "clock")
                     Spacer()
@@ -27,7 +32,7 @@ struct DetailView: View {
             } header: {
                 Text("Meeting Info")
             }
-
+            
             Section {
                 ForEach(scrum.attendees) { attendee in
                     Label(attendee.name, systemImage: "person")
@@ -35,26 +40,26 @@ struct DetailView: View {
             } header: {
                 Text("Attendees")
             }
-
+            
             /*
              ********** 解説 **********
-
+             
              記録をとるSectionを追加
              */
             Section(header: Text("History")) {
-
+                
                 if scrum.history.isEmpty {
                     /*
                      ********** 解説 **********
-
+                     
                      空なら空っぽ用のコンポーネントを呼び出す
                      */
                     Label("No meetings yet", systemImage: "calendar.badge.exclamationmark")
                 } else {
                     /*
                      ********** 解説 **********
-
-                     書籍はelseで囲ってないがこうした方が分かりやすいと思う
+                     
+                     サンプルはelseで囲ってないがこうした方が分かりやすいと思う
                      */
                     ForEach(scrum.history) { history in
                         HStack {
@@ -75,24 +80,24 @@ struct DetailView: View {
             NavigationStack {
                 /*
                  ********** 解説 **********
-
+                 
                  saveEdits: { _ in
                  }
                  の
                  { _ in
                  }
                  この部分がsaveEditsの関数の中身
-
+                 
                  つまり
                  普通の関数と違って
                  structやclassのインスタンス生成時に中身を決めることができる
                  */
-
+                
                 DetailEditView(scrum: scrum)
-                .navigationTitle(scrum.title)
+                    .navigationTitle(scrum.title)
             }
         }
-
+        
     }
 }
 

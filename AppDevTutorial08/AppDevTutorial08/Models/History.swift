@@ -9,16 +9,19 @@
 import Foundation
 import SwiftData
 
+/*
+ ********** 解説 **********
+
+ 過去のスクラムの記録
+ */
+
 @Model
-class History: Identifiable {
-    var id: UUID
+class History {
     var date: Date
     var attendees: [Attendee]
     var dailyScrum: DailyScrum?
 
-
-    init(id: UUID = UUID(), date: Date = .now, attendees: [Attendee]) {
-        self.id = id
+    init(date: Date = .now, attendees: [Attendee]) {
         self.date = date
         self.attendees = attendees
     }

@@ -4,7 +4,11 @@ import SwiftData
 struct ScrumsView: View {
     /*
      解説
-     外からBindingで受け取るのではなく
+     外からBindingで受け取るのではなくQueryでハードディスク(など)から読み込む
+     sortなどを指定することで呼び出し方を指定できる
+     デフォルトのパラメータにない呼び出し方がしたい場合は自前でロジックを用意できる
+     大量のデータから10件だけ欲しい時とか
+     https://zenn.dev/maochanz/articles/c8592f8cbe2fcc
      */
     @Query(sort: \DailyScrum.title) private var scrums: [DailyScrum]
     @State private var isPresentingNewScrumView = false

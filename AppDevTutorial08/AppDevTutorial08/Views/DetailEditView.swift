@@ -5,12 +5,28 @@ struct DetailEditView: View {
 
     let scrum: DailyScrum
 
+    /*
+     ********** 解説 **********
+
+     スクラムの編集をするため、新規の情報を個別のパラメータで管理する
+     @State private var newScrum: DailyScrum
+     みたいにした方がいいと思うが、サンプル通りにしてみる
+     */
     @State private var newAttendeeName = ""
     @State private var title: String
     @State private var lengthInMinutes: Int
     @State private var attendees: [Attendee]
     @State private var theme: Theme
+
     @Environment(\.dismiss) private var dismiss
+    /*
+     ********** 解説 **********
+
+     AppDevTutorial08App.swiftで指定している
+     modelContainer(for: DailyScrum.self)
+     にアクセスできるようになる
+     これによって得られるパラメータはデフォルト設定ではハードディスク領域への読み書きとなる
+     */
     @Environment(\.modelContext) private var context
 
     private let isCreatingScrum: Bool
@@ -43,7 +59,7 @@ struct DetailEditView: View {
 
                     Spacer()
 
-                    Text("\($lengthInMinutes.doubleValue) minutes")
+                    Text("\(lengthInMinutes.doubleValue) minutes")
                 }
                 ThemePicker(selection: $theme)
             } header: {
@@ -104,6 +120,18 @@ struct DetailEditView: View {
         scrum.lengthInMinutes = lengthInMinutes
         scrum.attendees = attendees
         scrum.theme = theme
+
+        /*
+         ********** 解説 **********
+
+         データベースとなっているcontextに新たなデータを挿入して保存している
+
+         var scrumms: [DailyScrum]
+         みたいな記述は基本はメモリー領域から読み書きされるわけだが、contextはハードディスクから読み書きして永続化することになる
+         メモリー領域のように瞬時に読み書きできないしディスクの故障で書き込めないこともありえるので特別なハードディスクに保存するためのsaveという記述になる
+         何度も言うが永続化というメリットのために使う
+         */
+
 
         if isCreatingScrum {
             context.insert(scrum)

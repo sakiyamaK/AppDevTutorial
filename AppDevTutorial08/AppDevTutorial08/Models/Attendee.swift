@@ -7,14 +7,17 @@
 import Foundation
 import SwiftData
 
+/*
+ ********** 解説 **********
+
+ 関係者を管理するモデルを用意する
+ */
 @Model
-class Attendee: Identifiable {
-    var id: UUID
+class Attendee {
     var name: String
     var dailyScrum: DailyScrum?
 
-    init(id: UUID = UUID(), name: String) {
-        self.id = id
+    init(name: String) {
         self.name = name
     }
 }

@@ -3,6 +3,11 @@ import AVFoundation
 
 struct MeetingView: View {
 
+    /*
+     ********** 解説 **********
+
+     contextとscrumを追記
+     */
     @Environment(\.modelContext) private var context
     let scrum: DailyScrum
     @State var scrumTimer = ScrumTimer()
