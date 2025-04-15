@@ -2,9 +2,7 @@
 
 App Dev Tutorialを専門学校の学生向けに解説を加えたもの
 
-約45項目
-
-9の解説終わり、次は10を作るところから
+10のプロジェクトを用意したところから
 
 
 # 参考
@@ -22,4 +20,7 @@ Scrumdingerというチームで行う「Daily Scrum（デイリースクラム�
 
 ミーティング履歴の記録
 
-01.png ~ 0.4png
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/01.png" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/02.png" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/03.png" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/04.png" width="300">
