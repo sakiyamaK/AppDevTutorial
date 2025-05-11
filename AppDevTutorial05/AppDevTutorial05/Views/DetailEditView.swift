@@ -31,7 +31,8 @@ struct DetailEditView: View {
             Section {
                 TextField("Title", text: $scrum.title)
                 HStack {
-                    Slider(value: $scrum.lengthInMinutes.doubleValue, in: 5...30, step: 1) {
+                    Slider(value:
+                            $scrum.lengthInMinutes.doubleValue, in: 5...30, step: 1) {
                         Text("Length")
                     }
 
@@ -50,6 +51,7 @@ struct DetailEditView: View {
                 .onDelete { indices in
                     scrum.attendees.remove(atOffsets: indices)
                 }
+
                 HStack {
                     TextField("New Attendee", text: $newAttendeeName)
                     Button(action: {

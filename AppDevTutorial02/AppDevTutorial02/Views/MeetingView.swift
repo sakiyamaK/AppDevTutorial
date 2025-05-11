@@ -37,7 +37,9 @@ struct MeetingView: View {
             HStack {
                 Text("Speaker 1 of 3")
                 Spacer()
-                Button(action: {}) {
+                Button(action: {
+                    
+                }) {
                     Image(systemName: "forward.fill")
                 }
             }

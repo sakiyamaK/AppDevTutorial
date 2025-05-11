@@ -6,24 +6,24 @@ import SwiftUI
 
 struct DetailView: View {
     let scrum: DailyScrum
-
+    
     var body: some View {
         List {
             /*
              ********** 解説 **********
              Section(header: ) {}
              は書き方が変わった
-
+             
              Section(content: {}, header: {}, footer: {})
-
+             
              Swiftの省略形の呼び出し方をすると
-
+             
              Section {
-
+             
              } header: {
-
+             
              } footer: {
-
+             
              }
              */
             Section {
@@ -48,8 +48,17 @@ struct DetailView: View {
                 }
             } header: {
                 Text("Meeting Info")
+            } footer: {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        print("増えろ")
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
             }
-
+            
             Section {
                 ForEach(scrum.attendees) { attendee in
                     Label(attendee.name, systemImage: "person")

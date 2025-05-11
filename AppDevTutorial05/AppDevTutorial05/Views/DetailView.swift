@@ -9,7 +9,7 @@ struct DetailView: View {
 
      @StateについてはDetailEditViewで解説
      */
-    @State private var isPresentingEditView = false
+    @State private var isPresentingEditView:Bool = false
 
     var body: some View {
         List {

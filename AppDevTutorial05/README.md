@@ -1,8 +1,12 @@
 # 概要
 
-シングルソースオブトゥルースの考え方
+ソースオブトゥルースの考え方
 
 State、BindingなどのProperty Wrapper
+
+# 説明資料
+
+https://docs.google.com/presentation/d/1wsORbRdv5633m2dglElnDvDDo7PW4T-AcAorh3b5HwQ/edit?usp=sharing
 
 # 参考
 
@@ -16,7 +20,7 @@ https://developer.apple.com/tutorials/app-dev-training/creating-the-edit-view
 ---- Bindingじゃない場合 ---
 
 struct CopyView: View {
-    var copyValue: Int
+    @State var copyValue: Int
 
     var body: some View {
         Text("Copy: \(copyValue)")
@@ -24,7 +28,7 @@ struct CopyView: View {
 }
 
 struct SourceView: View {
-    var sourceValue: Int = 1
+    @State var sourceValue: Int = 1
 
     var body: some View {
         VStack {

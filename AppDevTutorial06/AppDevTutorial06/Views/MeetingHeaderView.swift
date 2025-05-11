@@ -26,7 +26,7 @@ struct MeetingHeaderView: View {
              ProgressViewの見た目を変更するにはproguressViewStyleに適応したらいいらしい
              デフォルトでもいくつかのスタイルが用意されている
 
-             今回の例だと別に時前のstyleを用意する意味はなさそう...
+             今回の例だと別に自前のstyleを用意する意味はなさそう...
             */
             ProgressView(value: progress)
                 .progressViewStyle(ScrumProgressViewStyle(theme: theme))

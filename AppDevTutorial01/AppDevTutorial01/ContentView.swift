@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+
         VStack {
             ProgressView(value: 5, total: 15)
+                .background(Color.gray)
 
             HStack {
                 VStack(alignment: .leading) {
@@ -26,6 +28,7 @@ struct ContentView: View {
                     Label("300", systemImage: "hourglass.tophalf.fill")
                 }
                 Spacer()
+                
                 VStack(alignment: .trailing) {
                     Text("Seconds Remaining")
                         .font(.caption)
@@ -70,7 +73,10 @@ struct ContentView: View {
             HStack {
                 Text("Speaker 1 of 3")
                 Spacer()
-                Button(action: {}) {
+
+                Button(action: {
+                    print("tap")
+                }) {
                     Image(systemName: "forward.fill")
                 }
             }

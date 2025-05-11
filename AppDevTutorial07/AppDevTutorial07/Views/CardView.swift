@@ -25,3 +25,4 @@ struct CardView: View {
     CardView(scrum: scrum)
         .background(scrum.theme.mainColor)
 }
+

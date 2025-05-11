@@ -15,3 +15,52 @@ struct AppDevTutorial05App: App {
         }
     }
 }
+
+
+//struct CopyView: View {
+//    var copyValue: Int
+//
+//    var body: some View {
+//        Text("Copy: \(copyValue)")
+//    }
+//}
+//
+//struct SourceView: View {
+//    var sourceValue: Int = 1
+//
+//    var body: some View {
+//        VStack {
+//            Text("Body: \(sourceValue)")
+//            CopyView(copyValue: sourceValue)
+//            Button("値を変更") {
+//                sourceValue = 2
+//            }
+//        }
+//    }
+//}
+
+struct CopyView: View {
+    @Binding var copyValue: Int
+
+    var body: some View {
+        Text("Copy: \(copyValue)")
+    }
+}
+
+struct SourceView: View {
+    @State var sourceValue: Int = 1
+
+    var body: some View {
+        VStack {
+            Text("Body: \(sourceValue)")
+            CopyView(copyValue: $sourceValue)
+            Button("値を変更") {
+                sourceValue = 2
+            }
+        }
+    }
+}
+
+#Preview(body: {
+    SourceView()
+})
