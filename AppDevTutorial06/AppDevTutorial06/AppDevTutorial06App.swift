@@ -10,6 +10,12 @@ import SwiftUI
 @main
 struct AppDevTutorial06App: App {
 
+    /*
+     ********** 解説 **********
+
+     信頼できる情報源をここにする
+     */
+
     @State private var scrums = DailyScrum.sampleData
 
     var body: some Scene {

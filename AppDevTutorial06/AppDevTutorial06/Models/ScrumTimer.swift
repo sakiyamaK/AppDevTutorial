@@ -2,6 +2,8 @@ import Foundation
 
 /*
  ********** 解説 **********
+ 5/11時点で公式もObservableに書き換えてた...
+
  ObservableObjectはSwiftUIと同時に発表されてCombineフレームワークの機能(++++ SwiftUIの機能ではない ++++)
  値の監視といったこれまでStateやBindingでやっていた機能のclass版
  SwiftUI以外でも使える(UIKitやサーバーサイドSwiftなどなど)
@@ -12,7 +14,6 @@ import Foundation
 
  SwiftUIががっつりCombineありきで作られたが、勝手な予想だがCombineは消していくのかもしれない
 公式サンプルはObservableObjectで書かれているがここでは以下の移行手順に習って書き換えたObservationフレームワークを使う
-と思ったら5/11時点で公式もObservableに書き換えてた...
 
  https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro
  */
@@ -26,10 +27,6 @@ final class ScrumTimer {
         let id = UUID()
     }
 
-    /*
-     ********** 解説 **********
-     @Publishedがついているものが監視対象となる     
-     */
     var activeSpeaker = ""
     var secondsElapsed = 0
     var secondsRemaining = 0
@@ -72,7 +69,15 @@ final class ScrumTimer {
         timerStopped = true
     }
     
+    /*
+      ****** 解説 *****
+      この関数自体はActor隔離されてない箇所から呼べる
+     */
     nonisolated func skipSpeaker() {
+        /*
+          ****** 解説 *****
+          この中はMainスレッドのActorで実行してね
+         */
         Task { @MainActor in
             changeToSpeaker(at: speakerIndex + 1)
         }
@@ -93,8 +98,16 @@ final class ScrumTimer {
         startDate = Date()
     }
 
+    /*
+      ****** 解説 *****
+      この関数自体はActor隔離されてない箇所から呼べる
+     */
     nonisolated private func update() {
 
+        /*
+          ****** 解説 *****
+          この中はMainスレッドのActorで実行してね
+         */
         Task { @MainActor in
             guard let startDate,
                   !timerStopped else { return }

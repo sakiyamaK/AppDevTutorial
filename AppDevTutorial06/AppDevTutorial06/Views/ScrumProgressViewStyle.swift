@@ -1,5 +1,9 @@
 import SwiftUI
 
+/*
+ ********** 解説 **********
+ ProgressViewのレイアウトはProgressViewStyleに準拠したstructを渡すことで変えられる
+*/
 struct ScrumProgressViewStyle: ProgressViewStyle {
     var theme: Theme
 
@@ -24,7 +28,7 @@ struct ScrumProgressViewStyle: ProgressViewStyle {
 
 
 /*
- ********** 解説 **********
+ ********** 補足の解説 **********
  今回の例だと別にScrumProgressViewStyleを用意しなくても
  他のコンポーネントと同じようにこうしてViewを増やせば良いと思う
 
