@@ -19,18 +19,12 @@ https://note.com/sakiyamak/n/nf40752b88f98
 
 # Environmentについて
 
+## 説明スライド
+
+https://docs.google.com/presentation/d/13h0s_83BAlT3lPSZ0WJ4xowJbP_rKkYtdWd86Mmk9Ds/edit?slide=id.p#slide=id.p
+
+## サンプルプロジェクト
 SampleEnvironmentのプロジェクトを参照
-
-次の順序で解説している
-
-SampleEnvironment>StringEnvironmentView.swift
-SampleEnvironment>GlobalParameterView.swift
-SampleEnvironment>ThemeSettingsEnvironmentView.swift
-SampleEnvironment>TabEnvironmentView.swift
-
-上記は全て自前でカスタムなEnvironmentを作って利用しているが、
-SwiftUIはある程度のEnvironmentを用意してくれているので、
-カスタムする前に標準のEnvironmentがあるか調べること
 
 # 06からの追加/変更箇所
 
