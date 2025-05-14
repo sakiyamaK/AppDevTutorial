@@ -31,3 +31,15 @@ SampleEnvironment>TabEnvironmentView.swift
 上記は全て自前でカスタムなEnvironmentを作って利用しているが、
 SwiftUIはある程度のEnvironmentを用意してくれているので、
 カスタムする前に標準のEnvironmentがあるか調べること
+
+# 06からの追加/変更箇所
+
+## 追加
+History.swift
+NewScrumSheet.swift
+
+## 変更
+DailyScrum.swift
+DetailEditView.swift
+DetailView.swift
+MeetingView.swift

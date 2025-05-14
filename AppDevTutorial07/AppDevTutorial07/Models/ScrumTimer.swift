@@ -9,10 +9,6 @@ final class ScrumTimer {
         let id = UUID()
     }
 
-    /*
-     ********** 解説 **********
-     @Publishedがついているものが監視対象となる     
-     */
     var activeSpeaker = ""
     var secondsElapsed = 0
     var secondsRemaining = 0
