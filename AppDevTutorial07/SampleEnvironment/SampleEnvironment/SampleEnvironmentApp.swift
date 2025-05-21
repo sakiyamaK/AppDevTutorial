@@ -11,8 +11,10 @@ import SwiftUI
 struct SampleEnvironmentApp: App {
     var body: some Scene {
         WindowGroup {
-            ThemeSettingsEnvironmentView1()
-                .environment(\.themeSettings, .init())
+            NavigationView {
+                ThemeSettingsEnvironmentView1()
+            }
+            .environment(\.themeSettings, .init())
         }
     }
 }

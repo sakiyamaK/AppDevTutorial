@@ -13,10 +13,6 @@
 https://developer.apple.com/tutorials/app-dev-training/updating-app-data
 
 
-# 説明資料
-
-https://note.com/sakiyamak/n/nf40752b88f98
-
 # Environmentについて
 
 ## 説明スライド
@@ -25,6 +21,15 @@ https://docs.google.com/presentation/d/13h0s_83BAlT3lPSZ0WJ4xowJbP_rKkYtdWd86Mmk
 
 ## サンプルプロジェクト
 SampleEnvironmentのプロジェクトを参照
+
+# クロージャ
+
+## 説明資料
+
+https://note.com/sakiyamak/n/nf40752b88f98
+
+## サンプルプロジェクト
+Closure.playgroundを実行
 
 # 06からの追加/変更箇所
 

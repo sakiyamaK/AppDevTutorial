@@ -50,6 +50,7 @@ struct MeetingView: View {
         .padding()
         .foregroundColor(scrum.theme.accentColor)
         .onAppear {
+
             /*
              ********** 解説 **********
              onAppearは画面が呼ばれた時に処理される

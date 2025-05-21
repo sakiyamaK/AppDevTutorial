@@ -59,5 +59,5 @@ struct StandardEnvironmentView: View {
     }
     
     return TabEnvironmentView()
-    //        .preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
 }

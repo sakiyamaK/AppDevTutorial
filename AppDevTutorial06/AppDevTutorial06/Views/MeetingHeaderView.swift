@@ -28,10 +28,10 @@ struct MeetingHeaderView: View {
 
              今回の例だと別に自前のstyleを用意する意味はなさそう...
             */
-            ProgressView(value: progress)
-                .progressViewStyle(ScrumProgressViewStyle(theme: theme))
+//            ProgressView(value: progress)
+//                .progressViewStyle(ScrumProgressViewStyle(theme: theme))
 
-//            ScrumProgressView(value: progress, theme: theme)
+            ScrumProgressView(value: progress, theme: theme)
 
             HStack {
                 VStack(alignment: .leading) {
