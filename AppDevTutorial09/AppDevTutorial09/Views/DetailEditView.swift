@@ -60,18 +60,18 @@ struct DetailEditView: View {
             }
 
             Section {
-                ForEach(scrum.attendees) { attendee in
+                ForEach(attendees) { attendee in
                     Text(attendee.name)
                 }
                 .onDelete { indices in
-                    scrum.attendees.remove(atOffsets: indices)
+                    attendees.remove(atOffsets: indices)
                 }
                 HStack {
                     TextField("New Attendee", text: $newAttendeeName)
                     Button(action: {
                         withAnimation {
                             let attendee = Attendee(name: newAttendeeName)
-                            scrum.attendees.append(attendee)
+                            attendees.append(attendee)
                             newAttendeeName = ""
                         }
                     }) {
