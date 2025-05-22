@@ -36,31 +36,16 @@ print("finish")
  @Sendableは「複数の並行スレッド間でいったりきたりしても安全に動くよ」ということをコンパイラに保証する
  */
 func api(endPoint: String, completion: ( @Sendable (String?) -> Void)? ){
-    /*
-     apiの処理
-     */
 
     print("[1] API通信開始: \(endPoint)")
 
-    // 非同期処理を始める(スレッドが変わる)
     Task {
-        do {
-            // 3秒待つ
-            try await Task.sleep(for: .seconds(3))
+        try! await Task.sleep(for: .seconds(3))
 
-            print("[2] API通信終了: \(endPoint)")
+        print("[2] API通信終了: \(endPoint)")
 
-            // 別スレッドからメインスレッドに処理を戻す
-            await MainActor.run {
-                // completionを実行する
-                completion?("success")
-            }
-        } catch {
-            print("非同期タスク内でエラーが発生しました: \(error.localizedDescription)")
-            await MainActor.run {
-                // completionを実行する
-                completion?("error")
-            }
+        await MainActor.run {
+            completion?("success")
         }
     }
 
@@ -72,7 +57,12 @@ api(endPoint:"https://like", completion: nil)
 print("[4] finish")
 
 // @Sendableなクロージャ
-var sendableClosure: ( @Sendable (String?) -> Void)? = nil
+var sendableClosure: ( @Sendable (String?) -> Void)? = { (value: String?) -> Void  in
+    guard let _value = value else {
+        return
+    }
+    print("[5] \(_value)")
+}
 
 //クロージャを引数に代入してapi関数を実行
 print("---- api(endpoint:\"https://block\", completion: closure) ---")
@@ -92,7 +82,7 @@ api(endPoint:"https://comment", completion: { (value: String?) -> Void  in
     guard let value else {
         return
     }
-    print("無名関数を直接書いたよ : \(value)")
+    print("[5]  \(value)")
 })
 print("[4] finish")
 
