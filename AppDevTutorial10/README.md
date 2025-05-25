@@ -14,6 +14,14 @@ https://developer.apple.com/tutorials/app-dev-training/drawing-the-timer-view
 
 基本の描画概念なのでどのUIフレームワークでも考え方は変わらない
 
+
+## 説明スライド
+
+https://docs.google.com/presentation/d/1cAmawbiRVlk1fa831qs3-pBdguFgLWA5yr3X8DrU20I/edit?usp=sharing
+
+## 参考
+SamplePath/SamplePath.xcodeproj
+
 # 追加/変更
 
 ## 追加
