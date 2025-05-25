@@ -92,12 +92,14 @@ struct DetailEditView: View {
              あくまで開発段階のもので動作確認できたら消す
              */
 
-//            Button("error") {
-//                errorWrapper = ErrorWrapper(
-//                    error: NSError(domain: "hoge", code: 1),
-//                    guidance: "Daily scrum was not recorded. Try again later."
-//                )
-//            }
+#if DEBUG
+            Button("error") {
+                errorWrapper = ErrorWrapper(
+                    error: NSError(domain: "hoge", code: 1),
+                    guidance: "Daily scrum was not recorded. Try again later."
+                )
+            }
+#endif
         }
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
@@ -173,3 +175,4 @@ struct DetailEditView: View {
     @Previewable @Query(sort: \DailyScrum.title) var scrums: [DailyScrum]
     DetailEditView(scrum: scrums[0])
 }
+

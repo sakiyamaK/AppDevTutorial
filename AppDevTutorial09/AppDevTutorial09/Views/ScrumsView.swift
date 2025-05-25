@@ -18,11 +18,6 @@ struct ScrumsView: View {
             .navigationTitle("Daily Scrums")
             .toolbar {
                 Button(action: {
-                    /*
-                     ********** 解説 **********
-
-                     ボタンをタップしたらシートが出るようにする
-                     */
                     isPresentingNewScrumView = true
 
                 }) {

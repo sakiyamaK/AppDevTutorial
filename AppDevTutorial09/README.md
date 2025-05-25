@@ -2,6 +2,10 @@
 
 エラーハンドリング
 
+プリプロセッサマクロ
+
+HashableとIdentifiable
+
 # 参考
 
 https://developer.apple.com/tutorials/app-dev-training/handling-errors
@@ -17,4 +21,31 @@ https://developer.apple.com/tutorials/app-dev-training/handling-errors
 
 エラーが起きた場合にはユーザに知らせる必要がある
 
-だいたいの言語にはエラー専用の型が用意されている
+だいたいのプログラミング言語にはエラー専用の型が用意されている
+
+## 参考
+SampleError/SampleError.xcodeproj
+
+# HashableとIdentifableとUUID
+
+## 説明スライド
+
+https://docs.google.com/presentation/d/1Mxftp3e2GDBK9Lu14yJp1ApXdEpyWkgv-XTo97yJx5s/edit?usp=sharing
+
+## 参考
+Hashable_Identifable.playground
+
+# 追加/変更箇所
+
+## 移動
+DailyScrum.swift内に書いてたIntのextensionをExtensions/Int+swift
+
+## 追加
+Models/ErrorWrapper.swift
+Views/ErrorView.swift
+Views/MeetingView.swift
+
+## 変更
+Views/DetailEditView.swift
+Views/DetailView.swift
+

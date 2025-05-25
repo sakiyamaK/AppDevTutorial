@@ -22,6 +22,7 @@ struct MeetingTimerView: View {
     }
 
     var body: some View {
+
         Circle()
             .strokeBorder(lineWidth: 24)
             .overlay {
@@ -33,11 +34,30 @@ struct MeetingTimerView: View {
                 .accessibilityElement(children: .combine)
                 .foregroundStyle(theme.accentColor)
             }
+            .overlay  {
+                ForEach(speakers) { speaker in
+                    if speaker.isCompleted, let index = speakers.firstIndex(where: { $0.id == speaker.id }) {
+                        SpeakerArc(speakerIndex: index, totalSpeakers: speakers.count)
+                            .rotation(Angle(degrees: -90))
+                            .stroke(theme.mainColor, lineWidth: 12)
+                    }
+                }
+            }
+            .padding(.horizontal)
     }
 }
 
 
 #Preview {
-    let speakers = [ScrumTimer.Speaker(name: "Bill", isCompleted: true), ScrumTimer.Speaker(name: "Cathy", isCompleted: false)]
+    let speakers = [
+        ScrumTimer.Speaker(
+            name: "Bill",
+            isCompleted: true
+        ),
+        ScrumTimer.Speaker(
+            name: "Cathy",
+            isCompleted: true
+        )
+    ]
     MeetingTimerView(speakers: speakers, theme: .yellow)
 }

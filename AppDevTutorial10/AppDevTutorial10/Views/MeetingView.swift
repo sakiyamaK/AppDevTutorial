@@ -54,12 +54,6 @@ struct MeetingView: View {
         scrumTimer.startScrum()
     }
 
-    /*
-      **** 解説 ****
-
-     throwsで関数内でエラーが発生したことを外部に知らせる
-     */
-
     private func endScrum() throws {
         scrumTimer.stopScrum()
         let newHistory = History(attendees: scrum.attendees)
@@ -70,10 +64,5 @@ struct MeetingView: View {
 
 #Preview {
     let scrum = DailyScrum.sampleData[0]
-    /*
-      **** 解説 ****
-
-     パラメータを増やしたのでPreview側も修正しないといけないので注意
-     */
     MeetingView(scrum: scrum, errorWrapper: .constant(nil))
 }

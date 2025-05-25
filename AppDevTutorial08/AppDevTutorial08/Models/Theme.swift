@@ -4,7 +4,6 @@ import SwiftUI
  ********** 解説 **********
 
  Model属性内で使うためにCodableにする
- TODO: 調査
  */
 
 enum Theme: String, CaseIterable, Identifiable, Codable {

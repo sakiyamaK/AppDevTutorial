@@ -4,8 +4,6 @@
 
 Timer.scheduledTimerを使った定期的なメソッドの実行
 
-HashableとIdentifiable
-
 Observationフレームワークによるclassのパラメータの追跡
 
 nonisolatedとMainActor
@@ -21,7 +19,7 @@ https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-
 Swift Concurrency(nonisolatedとMainActor)
 https://docs.google.com/presentation/d/18swAKwT7l1RyNDf60IB-lfK86cmL5JAKT9kvEE9tLFE/edit?usp=sharing
 
-# 05からの追加/変更箇所
+# 追加/変更箇所
 
 ## 追加
 Models/AVPlayer+Ding.swift
