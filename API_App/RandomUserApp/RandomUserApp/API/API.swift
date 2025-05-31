@@ -18,7 +18,7 @@ final class API {
         var resultsCount: Int = 10        
     }
 
-    func fetchUsers(paramter: RequestParameter, isSample: Bool = false) async throws -> [User] {
+    func fetchUsers(paramter: RequestParameter) async throws -> [User] {
         let requestURL = try makeRequestURL(paramter: paramter)
         // デバッグ用
         print("Fetching users from: \(requestURL.absoluteString)")

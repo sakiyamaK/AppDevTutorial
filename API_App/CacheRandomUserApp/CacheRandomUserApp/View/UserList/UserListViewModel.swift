@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 final class UserListViewModel {
-    // 性別の選択肢
     enum GenderType: CaseIterable, Identifiable {
 
         case all, male, female
@@ -32,7 +31,7 @@ final class UserListViewModel {
             }
         }
     }
-    // 国籍の選択肢
+
     enum NationalityType: CaseIterable, Identifiable {
 
         case all, us, gb, fr, de
@@ -64,13 +63,14 @@ final class UserListViewModel {
     var isLoading: Bool = false
     var errorMessage: String?
 
-    // 検索条件
     var selectedGender: GenderType = .all
     var selectedNationality: NationalityType = .all
 
     private var api: API = .shared
 
-    func searchUsers() async {
+    // 新規
+    // キャッシュを使うかどうか判断するフラグを増やす
+    func searchUsers(refresh: Bool = false) async {
         isLoading = true
         errorMessage = nil
 
@@ -79,7 +79,10 @@ final class UserListViewModel {
                 paramter: API.RequestParameter(
                     gender: selectedGender.apiValue,
                     nationality: selectedNationality.apiValue,
-                    resultsCount: 10
+                    resultsCount: 10,
+                    // 新規
+                    // refreshならキャッシュを使わない
+                    cachePolicy: refresh ? .reloadIgnoringLocalCacheData : .returnCacheDataElseLoad
                 )
             )
             self.users = responseUsers.filter { $0.id.isNotEmpty }

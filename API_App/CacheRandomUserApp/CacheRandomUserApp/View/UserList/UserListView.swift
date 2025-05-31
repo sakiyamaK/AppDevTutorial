@@ -1,6 +1,6 @@
 //
 //  UserListView.swift
-//  RandomUserApp
+//  CacheRandomUserApp
 //
 //  Created by sakiyamaK on 2025/05/29.
 //
@@ -14,7 +14,6 @@ struct UserListView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 24) {
-                    // ユーザー検索条件ビュー
                     UserSearchCriteriaView(viewModel: viewModel)
                         .background(
                             RoundedRectangle(cornerRadius: 16)
@@ -22,7 +21,6 @@ struct UserListView: View {
                         )
                         .padding(.horizontal)
 
-                    // 状態表示エリア
                     if viewModel.isLoading {
                         VStack(spacing: 12) {
                             ProgressView()
@@ -56,11 +54,6 @@ struct UserListView: View {
                     }
 
                     if !viewModel.isLoading {
-                        // LazyVStack
-                        // 内部のViewたちのインスタンスを即座に生成せず画面に映るタイミングでインスタンスを生成する
-                        // 負荷軽減のためにやる
-                        // Lazyは「今は定義だけするけど実行は後からやるよ」って意味
-                        // 他にもLazyXXとか lazy var とかを見かけることはあるけど同じ意味
                         LazyVStack(spacing: 16) {
                             ForEach(viewModel.users) { user in
                                 UserCard(user: user)
@@ -71,9 +64,15 @@ struct UserListView: View {
                 }
                 .padding(.vertical)
             }
+            .refreshable {
+                Task {
+                    // 新規
+                    // 引っ張りリロードをする時はキャッシュを使わずリフレッシュさせる
+                    await viewModel.searchUsers(refresh: true)
+                }
+            }
         }
-        .navigationTitle("Random Users")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationTitle("Cache Random Users")
     }
 }
 
