@@ -15,13 +15,13 @@ enum NetworkError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "無効なURLです。"
+            "無効なURLです。"
         case .invalidResponse:
-            return "サーバーからの無効なレスポンスです。"
+            "サーバーからの無効なレスポンスです。"
         case .decodingError(let error):
-            return "データのデコードに失敗しました: \(error.localizedDescription)"
+            "データのデコードに失敗しました: \(error.localizedDescription)"
         case .unknown(let error):
-            return "不明なエラーが発生しました: \(error.localizedDescription)"
+            "不明なエラーが発生しました: \(error.localizedDescription)"
         }
     }
 }

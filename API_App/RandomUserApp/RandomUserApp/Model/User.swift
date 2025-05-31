@@ -7,37 +7,29 @@
 
 import Foundation
 
-// ユーザー情報の構造体
 struct User: Codable, Identifiable {
     var id: ID
     let gender: String
     let name: Name
     let email: String
-    let phone: String
-    let cell: String
     let picture: Picture
     let nat: String // 国籍
 
-    struct ID: Codable, Hashable {
-        var id: UUID = UUID()
+    // 入れ子のjsonをstructでさらに定義
 
+    // IDはUserのIdentifiableとしても使うので、Hashableも必要となる
+    struct ID: Codable, Hashable {
         let name: String?
         let value: String?
 
+        var isNotEmpty: Bool {
+            guard let name, let value else { return false }
+            return !name.isEmpty && !value.isEmpty
+        }
+
         func hash(into hasher: inout Hasher) {
-            id.hash(into: &hasher)
-        }
-
-        enum CodingKeys: CodingKey {
-            case name
-            case value
-        }
-
-        init(from decoder: any Decoder) throws {
-            let container: KeyedDecodingContainer<User.ID.CodingKeys> = try decoder.container(keyedBy: User.ID.CodingKeys.self)
-            self.id = UUID()
-            self.name = try container.decodeIfPresent(String.self, forKey: User.ID.CodingKeys.name)
-            self.value = try container.decodeIfPresent(String.self, forKey: User.ID.CodingKeys.value)
+            name?.hash(into: &hasher)
+            value?.hash(into: &hasher)
         }
     }
 
@@ -51,7 +43,6 @@ struct User: Codable, Identifiable {
         }
     }
 
-    // 画像URL部分の構造体
     struct Picture: Codable {
         let large: String
         let medium: String

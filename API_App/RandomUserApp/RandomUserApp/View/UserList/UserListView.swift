@@ -8,48 +8,75 @@
 import SwiftUI
 
 struct UserListView: View {
-
     @State private var viewModel = UserListViewModel()
 
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 20) {
-                    // MARK: - ユーザー検索条件ビュー
+                VStack(spacing: 24) {
+                    // ユーザー検索条件ビュー
                     UserSearchCriteriaView(viewModel: viewModel)
-                        .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        )
                         .padding(.horizontal)
 
-                    // MARK: - 状態表示エリア
+                    // 状態表示エリア
                     if viewModel.isLoading {
-                        ProgressView("ユーザーを検索中...")
-                            .padding()
+                        VStack(spacing: 12) {
+                            ProgressView()
+                                .scaleEffect(1.2)
+                            Text("ユーザーを検索中...")
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(16)
+                        .padding(.horizontal)
                     } else if let errorMessage = viewModel.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
                             .padding()
+                            .frame(maxWidth: .infinity)
+                            .cornerRadius(16)
+                            .padding(.horizontal)
                     } else if viewModel.users.isEmpty {
-                        Text("検索条件を指定して「ユーザーを検索」ボタンを押してください。")
-                            .foregroundColor(.secondary)
-                            .padding()
+                        VStack(spacing: 12) {
+                            Image(systemName: "magnifyingglass")
+                                .font(.system(size: 40))
+                                .foregroundColor(.white.opacity(0.6))
+                            Text("検索条件を指定して「ユーザーを検索」ボタンを押してください。")
+                                .foregroundColor(.white.opacity(0.6))
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(16)
+                        .padding(.horizontal)
                     }
 
-                    // MARK: - ユーザーリスト
-                    LazyVStack(spacing: 15) { // カード間のスペース
-                        ForEach(viewModel.users) { user in
-                            UserCard(user: user) // 新しいカードビュー
+                    if !viewModel.isLoading {
+                        // LazyVStack
+                        // 内部のViewたちのインスタンスを即座に生成せず画面に映るタイミングでインスタンスを生成する
+                        // 負荷軽減のためにやる
+                        // Lazyは「今は定義だけするけど実行は後からやるよ」って意味
+                        // 他にもLazyXXとか lazy var とかを見かけることはあるけど同じ意味
+                        LazyVStack(spacing: 16) {
+                            ForEach(viewModel.users) { user in
+                                UserCard(user: user)
+                            }
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal) // リスト全体にも左右余白
                 }
-                .padding(.vertical) // ScrollView内のVStack全体に上下パディング
+                .padding(.vertical)
             }
-            .navigationTitle("Random Users")
-            .navigationBarTitleDisplayMode(.large) // 大きなタイトル
-            .background(Color.gray.opacity(0.1).ignoresSafeArea()) // 背景色を薄くして、カードを浮き立たせる
         }
+        .navigationTitle("Random Users")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
+
 
 #Preview {
     UserListView()

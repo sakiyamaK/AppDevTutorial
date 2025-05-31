@@ -9,17 +9,64 @@ import Foundation
 
 @Observable
 final class UserListViewModel {
+    // 性別の選択肢
+    enum GenderType: CaseIterable, Identifiable {
+
+        case all, male, female
+
+        var id: String { displayName }
+
+        var displayName: String {
+            switch self {
+            case .all: "全て"
+            case .male: "男性"
+            case .female: "女性"
+            }
+        }
+
+        var apiValue: String? {
+            switch self {
+            case .all: nil
+            case .male: "male"
+            case .female: "female"
+            }
+        }
+    }
+    // 国籍の選択肢
+    enum NationalityType: CaseIterable, Identifiable {
+
+        case all, us, gb, fr, de
+
+        var id: String { displayName }
+
+        var displayName: String {
+            switch self {
+            case .all: "全て"
+            case .us: "US"
+            case .gb: "GB"
+            case .fr: "FR"
+            case .de: "DE"
+            }
+        }
+
+        var apiValue: String? {
+            switch self {
+            case .all: nil
+            case .us: "US"
+            case .gb: "GB"
+            case .fr: "FR"
+            case .de: "DE"
+            }
+        }
+    }
+
     var users: [User] = []
     var isLoading: Bool = false
     var errorMessage: String?
 
     // 検索条件
-    var selectedGender: String = "" // "male", "female", "" (全て)
-    var selectedNationality: String = "" // "us", "gb", など
-
-    // 性別と国籍の選択肢
-    let genders = ["全て", "男性", "女性"]
-    let nationalities = ["全て", "US", "GB", "FR", "DE"]
+    var selectedGender: GenderType = .all
+    var selectedNationality: NationalityType = .all
 
     private var api: API = .shared
 
@@ -27,17 +74,16 @@ final class UserListViewModel {
         isLoading = true
         errorMessage = nil
 
-        let genderParam: String? = (selectedGender == genders.first) ? nil : selectedGender
-        let natParam: String? = (selectedNationality == nationalities.first) ? nil : selectedNationality
-
         do {
-            self.users = try await api.fetchUsers(
+            let responseUsers = try await api.fetchUsers(
                 paramter: API.RequestParameter(
-                    gender: genderParam,
-                    nationality: natParam,
+                    gender: selectedGender.apiValue,
+                    nationality: selectedNationality.apiValue,
                     resultsCount: 10
-                )
+                ),
+                isSample: false
             )
+            self.users = responseUsers.filter { $0.id.isNotEmpty }
             self.isLoading = false
         } catch {
             self.errorMessage = error.localizedDescription

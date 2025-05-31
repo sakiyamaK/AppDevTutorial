@@ -20,8 +20,8 @@ struct UserSearchCriteriaView: View {
                 .padding(.horizontal)
 
             Picker("性別", selection: $viewModel.selectedGender) {
-                ForEach(viewModel.genders, id: \.self) { gender in
-                    Text(gender).tag(gender)
+                ForEach(UserListViewModel.GenderType.allCases, id: \.self) { gender in
+                    Text(gender.displayName).tag(gender)
                 }
             }
             .pickerStyle(.segmented)
@@ -33,8 +33,8 @@ struct UserSearchCriteriaView: View {
                     .foregroundColor(.secondary)
                 Spacer()
                 Picker("国籍", selection: $viewModel.selectedNationality) {
-                    ForEach(viewModel.nationalities, id: \.self) { nat in
-                        Text(nat).tag(nat)
+                    ForEach(UserListViewModel.NationalityType.allCases, id: \.self) { nat in
+                        Text(nat.displayName).tag(nat)
                     }
                 }
             }

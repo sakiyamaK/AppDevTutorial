@@ -15,24 +15,24 @@ final class API {
     struct RequestParameter {
         let gender: String?
         let nationality: String?
-        var resultsCount: Int = 10
+        var resultsCount: Int = 10        
     }
 
-    func fetchUsers(paramter: RequestParameter) async throws -> [User] {
-
+    func fetchUsers(paramter: RequestParameter, isSample: Bool = false) async throws -> [User] {
         let requestURL = try makeRequestURL(paramter: paramter)
-        print("Fetching users from: \(requestURL.absoluteString)") // デバッグ用
+        // デバッグ用
+        print("Fetching users from: \(requestURL.absoluteString)")
 
         do {
             let (data, response) = try await URLSession.shared.data(from: requestURL)
-
-//            data.printJson()
+            // デバッグ用
+            // 受け取ったData型をString型に変換してprintする
+            data.printJson()
 
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
                 throw NetworkError.invalidResponse
             }
-
             let decodedResponse = try JSONDecoder().decode(RandomUserResponse.self, from: data)
             return decodedResponse.results
         } catch let decodingError as DecodingError {
@@ -42,10 +42,14 @@ final class API {
         }
     }
 
+    // hostとパラメータからリクセストするURLを構築する
     private func makeRequestURL(paramter: RequestParameter) throws -> URL {
 
+        // URLComponentsを使うとパラメータをいい感じにエスケープしてくる
+        // エスケープとはURLには使えない文字を別の文字に対応すること
         var components = URLComponents(string: host)!
 
+        // components.queryItemsに代入する配列を構築していく
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "results", value: "\(paramter.resultsCount)")
         ]
@@ -59,8 +63,11 @@ final class API {
             queryItems.append(queryItem)
         }
 
+        // components.queryItemsに代入
         components.queryItems = queryItems
 
+        // componentsに設定されているパラメータ等からURLを生成する
+        // 不正な状態になっていたらnilとなる
         guard let url = components.url else {
             throw NetworkError.invalidURL
         }
