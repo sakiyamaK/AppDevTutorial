@@ -27,5 +27,16 @@ Codable3.playground
 
 # API通信
 
+## 概要
+外部サーバーと通信する
+
+## 参考
+RandomUserApp/RandomUserApp.xcodeproj
+
 # 通信のキャッシュ
 
+## 概要
+通信結果をローカルにキャッシュとして保存する
+
+## 参考
+CacheRandomUserApp/CacheRandomUserApp.xcodeproj
