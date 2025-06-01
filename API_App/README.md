@@ -33,6 +33,8 @@ Codable3.playground
 ## 参考
 RandomUserApp/RandomUserApp.xcodeproj
 
+API/API.swift
+
 # 通信のキャッシュ
 
 ## 概要
@@ -40,3 +42,5 @@ RandomUserApp/RandomUserApp.xcodeproj
 
 ## 参考
 CacheRandomUserApp/CacheRandomUserApp.xcodeproj
+
+API/API.swift
