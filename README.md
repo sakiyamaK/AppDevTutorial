@@ -2,8 +2,6 @@
 
 App Dev Tutorialを専門学校の学生向けに解説を加えたもの
 
-10のプロジェクトを用意したところから
-
 
 # 参考
 https://developer.apple.com/tutorials/app-dev-training
