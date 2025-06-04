@@ -72,7 +72,6 @@ final class API {
         var cachePolicy: URLRequest.CachePolicy = .returnCacheDataElseLoad
     }
 
-
     func fetchUsers(paramter: RequestParameter) async throws -> [User] {
         let requestURL = try makeRequestURL(paramter: paramter)
 

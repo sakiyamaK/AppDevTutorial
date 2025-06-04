@@ -31,6 +31,11 @@ Codable3.playground
 外部サーバーと通信する
 
 ## 参考
+AsyncAwait0.playground
+AsyncAwait1.playground
+AsyncAwait2.playground
+AsyncAwait3.playground
+AsyncAwait4.playground
 RandomUserApp/RandomUserApp.xcodeproj
 
 API/API.swift
