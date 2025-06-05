@@ -21,7 +21,7 @@ let json = """
         "user_name": "coder_taro",
         "password_hash": "abc123xyz"
     },
-    "last_login_at": 1678886400 // UNIXタイムスタンプ
+    "last_login_at": 1678886400
 }
 """
 
@@ -44,7 +44,7 @@ struct User: Decodable, Identifiable {
     }
 
     private enum CredentialsKeys: String, CodingKey {
-        case userName
+        case userName = "user_name"
     }
 
     // MARK: - init(from decoder:) の手動実装

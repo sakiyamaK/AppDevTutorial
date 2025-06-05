@@ -9,25 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var sampleError: SampleError?
+    @State private var error: SampleError?
 
     var body: some View {
         Button("エラーが起きるかな？？") {
             do {
+
                 try someFunction()
+
+                try someFunction2()
+
             } catch let e {
-                if let _sampleError = e as? SampleError {
-                    sampleError = _sampleError
+                if let error = e as? SampleError {
+                    self.error = error
                 }
             }
         }
-        .alert(item: $sampleError, content: { sampleError in
+        .alert(item: $error, content: { sampleError in
             Alert(
                 title: Text(sampleError.message),
-                message: nil,
+                message: Text("ほげほげしてください"),
                 dismissButton: .default(Text("OK"))
-            )
-        })
+            )        })
     }
 
     func someFunction() throws {
@@ -35,6 +38,16 @@ struct ContentView: View {
             throw SampleError(message: "エラーが出たよ")
         }
     }
+
+    func someFunction2() throws {
+        if Int.random(in: 0...1) == 0 {
+            throw SampleError(message: "エラー2が出たよ")
+        }
+        if Int.random(in: 0...1) == 0 {
+            throw SampleError2(errorNo: 0)
+        }
+    }
+
 }
 
 #Preview {

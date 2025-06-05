@@ -64,7 +64,6 @@ guard let jsonData = jsonString.data(using: .utf8) else {
     fatalError("JSON文字列をDataに変換できませんでした。")
 }
 
-
 /*:
  ## 3. Decodable (JSON → Swift) の実演
 
@@ -113,7 +112,7 @@ let encoder = JSONEncoder()
 encoder.outputFormatting = .prettyPrinted // JSONを整形して出力するためのオプション
 
 do {
-    let encodedData = try encoder.encode(newUser)
+    let encodedData: Data = try encoder.encode(newUser)
 
     // Data型からJSON文字列に変換して表示
     if let encodedJsonString = String(data: encodedData, encoding: .utf8) {

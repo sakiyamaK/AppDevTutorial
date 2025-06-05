@@ -2,8 +2,6 @@
 
 エラーハンドリング
 
-プリプロセッサマクロ
-
 HashableとIdentifiable
 
 # 参考
@@ -43,9 +41,9 @@ DailyScrum.swift内に書いてたIntのextensionをExtensions/Int+swift
 ## 追加
 Models/ErrorWrapper.swift
 Views/ErrorView.swift
-Views/MeetingView.swift
 
 ## 変更
+Views/MeetingView.swift
 Views/DetailEditView.swift
 Views/DetailView.swift
 
