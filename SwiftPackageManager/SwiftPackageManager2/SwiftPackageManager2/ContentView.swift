@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  SwiftPackageManager1
+//  SwiftPackageManager2
 //
 //  Created by sakiyamaK on 2025/06/12.
 //
