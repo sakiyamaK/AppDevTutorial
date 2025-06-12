@@ -27,6 +27,9 @@ struct DrawOthersView: View {
                 Path { path in
                     // 円(楕円)
                     path.addEllipse(in: CGRect(x: 0, y: 0, width: 100, height: 100))
+
+                    path.addEllipse(in: CGRect(x: 200, y: 0, width: 100, height: 100))
+
                 }
                 .stroke(Color.black, lineWidth: 1)
                 .fill(Color.red)
@@ -54,84 +57,6 @@ struct DrawOthersView: View {
                 .fill(Color.red)
                 .border(Color.gray.opacity(0.3))
                 .frame(height: 200)
-
-                Path { path in
-                    /*
-                     三点を結ぶ線を引く
-
-                     closeSubpath()で明確に閉じろと指定している
-                     */
-                    path.addLines(
-                        [
-                            CGPoint(
-                                x: 0,
-                                y: 0
-                            ),
-                            CGPoint(
-                                x: 100,
-                                y: 0
-                            ),
-                            CGPoint(
-                                x: 50,
-                                y: 100
-                            )
-                        ]
-                    )
-
-                    path.closeSubpath()
-                }
-                .stroke(Color.black, lineWidth: 1)
-                .fill(Color.red)
-                .border(Color.gray.opacity(0.3))
-                .frame(height: 200)
-
-                Path { path in
-                    // ペンを移動させるイメージ
-                    path.move(
-                        to: CGPoint(
-                            x: 0,
-                            y: 0
-                        )
-                    )
-                    path.addLine(
-                        to: CGPoint(
-                            x: 100,
-                            y: 0
-                        )
-                    )
-                    path.addLine(
-                        to: CGPoint(
-                            x: 50,
-                            y: 100
-                        )
-                    )
-                    path.closeSubpath()
-
-                    // ペンを移動させるイメージ
-                    path.move(
-                        to: CGPoint(
-                            x: 200,
-                            y: 0
-                        )
-                    )
-                    path.addLine(
-                        to: CGPoint(
-                            x: 300,
-                            y: 0
-                        )
-                    )
-                    path.addLine(
-                        to: CGPoint(
-                            x: 250,
-                            y: 100
-                        )
-                    )
-                    path.closeSubpath()
-                }
-                .stroke(Color.black, lineWidth: 1)
-                .fill(Color.red)
-                .frame(height: 200)
-                .border(Color.gray.opacity(0.3))
             }
         }
         .padding()

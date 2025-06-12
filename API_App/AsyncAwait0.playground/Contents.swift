@@ -40,6 +40,5 @@ fetchDataFromServer { responseStr in
     fetchDataFromServer2 { responseStr2 in
         print("取得したデータ2: \(responseStr)")
         print("--- 2. 完了 ---\n")
-
     }
 }

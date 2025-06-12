@@ -38,6 +38,7 @@ Task {
     let data = await fetchDataFromServer()
     print("取得したデータ: \(data)")
     print("--- 1. 完了 ---\n")
+
     let data2 = await fetchDataFromServer2()
     print("取得したデータ: \(data2)")
     print("--- 2. 完了 ---\n")

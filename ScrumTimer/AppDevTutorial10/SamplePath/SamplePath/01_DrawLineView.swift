@@ -14,6 +14,7 @@ struct DrawLineView: View {
     var body: some View {
         ScrollView {
             VStack {
+
                 Path { path in
 
                     /*
@@ -34,8 +35,12 @@ struct DrawLineView: View {
                             CGPoint(
                                 x: 100,
                                 y: 100
+                            ),
+                            CGPoint(
+                                x: 150,
+                                y: 130
                             )
-                        ]
+                         ]
                     )
                 }
                 .stroke(Color.black, lineWidth: 1)

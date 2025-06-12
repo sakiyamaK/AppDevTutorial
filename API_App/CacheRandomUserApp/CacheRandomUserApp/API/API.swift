@@ -87,12 +87,12 @@ final class API {
             // URLRequestを渡すdata(for: request)に変える
             let (data, response) = try await URLSession.shared.data(for: request)
 
-//            data.printJson()
-
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
                 throw NetworkError.invalidResponse
             }
+
+            //            data.printJson()
 
             let decodedResponse = try JSONDecoder().decode(RandomUserResponse.self, from: data)
             return decodedResponse.results

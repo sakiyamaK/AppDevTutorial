@@ -7,17 +7,15 @@
 
 import Foundation
 
-struct Japanese: Identifiable {
-    var id: String { name }
-    var name: String
+struct ErrorWrapper: Identifiable {
+    var id: UUID = UUID()
+    var error: Error
 }
 
-struct SampleError: Error, Identifiable {
-    var id: UUID = UUID()
+struct SampleError: Error {
     var message: String
 }
 
-struct SampleError2: Error, Identifiable {
-    var id: UUID = UUID()
+struct SampleError2: Error {
     var errorNo: Int
 }

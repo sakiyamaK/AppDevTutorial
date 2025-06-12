@@ -57,7 +57,11 @@ struct MeetingTimerView: View {
         ScrumTimer.Speaker(
             name: "Cathy",
             isCompleted: true
-        )
+        ),
+        ScrumTimer.Speaker(
+            name: "Cathy",
+            isCompleted: false
+        ),
     ]
     MeetingTimerView(speakers: speakers, theme: .yellow)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var error: SampleError?
+    @State private var error: ErrorWrapper?
 
     var body: some View {
         Button("エラーが起きるかな？？") {
@@ -20,22 +20,37 @@ struct ContentView: View {
                 try someFunction2()
 
             } catch let e {
-                if let error = e as? SampleError {
-                    self.error = error
-                }
+                self.error = ErrorWrapper(error: e)
             }
         }
-        .alert(item: $error, content: { sampleError in
-            Alert(
-                title: Text(sampleError.message),
-                message: Text("ほげほげしてください"),
-                dismissButton: .default(Text("OK"))
-            )        })
+        .alert(item: $error, content: { errorWrapper in
+            if let sampleError = errorWrapper.error as? SampleError {
+                Alert(
+                    title: Text(sampleError.message),
+                    message: Text("ほげほげしてください"),
+                    dismissButton: .default(Text("OK"))
+                )
+            } else if let sampleError2 = errorWrapper.error as? SampleError2 {
+                Alert(
+                    title: Text(sampleError2.errorNo.description),
+                    message: nil,
+                    dismissButton: .default(Text("OK"))
+                )
+            } else {
+                Alert(
+                    title: Text("謎のエラー"),
+                    message: nil,
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+        })
     }
 
     func someFunction() throws {
         if Int.random(in: 0...1) == 0 {
-            throw SampleError(message: "エラーが出たよ")
+            throw SampleError(
+                message: "エラーが出たよ"
+            )
         }
     }
 

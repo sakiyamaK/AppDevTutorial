@@ -28,14 +28,15 @@ final class API {
             // Dataは生の01の羅列を集めた型
             // サーバーからの戻り値はどんな形式か実装中に分かるものではないためDataとして受け取るようになってる
             let (data, response) = try await URLSession.shared.data(from: requestURL)
-            // デバッグ用
-            // 受け取ったData型をString型に変換してprintする
-            data.printJson()
 
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
                 throw NetworkError.invalidResponse
             }
+
+            // デバッグ用
+            // 受け取ったData型をString型に変換してprintする
+            data.printJson()
 
             let decodedResponse = try JSONDecoder().decode(RandomUserResponse.self, from: data)
             return decodedResponse.results

@@ -30,5 +30,8 @@ SamplePath/SamplePath.xcodeproj
 # 追加/変更
 
 ## 追加
-Views/MeetingView.swift
+Views/MeetingTimerView.swift
 Views/SpeakerArc.swift
+
+## 変更
+Views/MeetingView.swift

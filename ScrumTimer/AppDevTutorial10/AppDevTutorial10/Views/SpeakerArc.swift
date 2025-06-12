@@ -97,5 +97,9 @@ struct SmileShape: Shape {
 }
 
 #Preview {
-    SmileShape(isSmiling: true)
+    SpeakerArc(speakerIndex: 0, totalSpeakers: 3)
+        .rotation(Angle(degrees: -90))
+        .stroke(.yellow, lineWidth: 12)
+
+//    SmileShape(isSmiling: true)
 }

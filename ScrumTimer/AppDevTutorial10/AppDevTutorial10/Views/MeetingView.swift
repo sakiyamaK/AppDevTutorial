@@ -20,9 +20,9 @@ struct MeetingView: View {
 
                 Spacer()
 
-                Circle()
-                    .stroke(lineWidth: 24)
-                    .padding()
+                // 修正
+                //　MeetingTimerViewの呼び出しに修正
+                MeetingTimerView(speakers: scrum.attendees.speakers, theme: scrum.theme)
 
                 Spacer()
 
