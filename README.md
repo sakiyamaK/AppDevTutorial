@@ -1,24 +1,20 @@
 # 概要
 
-App Dev Tutorialを専門学校の学生向けに解説を加えたもの
+App Dev Tutorialなどを専門学校の学生向けに解説を加えたもの
 
 
-# 参考
-https://developer.apple.com/tutorials/app-dev-training
+## ScrumTimer
+SwiftUIを中心に使ってScrumdingerというチームで行う「Daily Scrum（デイリースクラム）」ミーティングを管理するアプリ
 
+## API_App
+ScrumTimerでは使わないが実務では必須なサーバーと連携してデータを取得する処理をまとめたアプリ
 
-# 作るもの
+## Swift
+SwiftUIやUIKitといったフレームワークに依存しない純粋なSwift言語機能について学ぶ
 
-Scrumdingerというチームで行う「Daily Scrum（デイリースクラム）」ミーティングを管理するアプリです。
+## SwiftPackageManager
+Swift言語の標準のパッケージ管理ツールの使い方を学ぶ
 
-主な機能：
-各スクラムの情報（タイトル・時間・出席者）を登録
+## UIKit
+SwiftUI以前にiOSアプリ開発の中心であったApple純正フレームワークについて学ぶ
 
-ミーティングのタイマー機能
-
-ミーティング履歴の記録
-
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/01.png" width="300">
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/02.png" width="300">
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/03.png" width="300">
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/04.png" width="300">
