@@ -9,6 +9,7 @@ struct CardView: View {
     let scrum: DailyScrum
 
     var body: some View {
+
         VStack(alignment: .leading) {
             Text(scrum.title)
                 .font(.headline)
@@ -22,7 +23,7 @@ struct CardView: View {
                 Spacer()
 
                 Label("\(scrum.lengthInMinutes)", systemImage: "clock")
-//                    .labelStyle(.trailingIcon)
+                    .labelStyle(.trailingIcon)
 
                 /*
                  ********** 解説 **********
@@ -40,9 +41,10 @@ struct CardView: View {
 }
 
 // 新しい書き方でのサイズの指定方法
-#Preview(traits: .fixedLayout(width: 150, height: 60)) {
+#Preview(traits: .fixedLayout(width: 150, height: 120)) {
 
     let scrum = DailyScrum.sampleData[0]
+
     CardView(scrum: scrum)
         .background(scrum.theme.mainColor)
 }

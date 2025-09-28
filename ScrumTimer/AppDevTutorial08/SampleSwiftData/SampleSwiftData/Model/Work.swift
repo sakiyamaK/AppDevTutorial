@@ -11,6 +11,7 @@ import SwiftData
 /*
  SwiftData のモデルとして扱うことを宣言
  */
+
 @Model
 final class Work {
     var title: String

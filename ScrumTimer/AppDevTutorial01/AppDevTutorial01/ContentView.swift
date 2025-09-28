@@ -9,15 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-
         VStack {
             ProgressView(value: 5, total: 15)
-                .background(Color.gray)
+                .background(.gray)
 
             HStack {
                 VStack(alignment: .leading) {
                     Text("Seconds Elapsed")
                         .font(.caption)
+
                     /*
                       *********** 解説 **********
                      systemImageは組み込まれたアイコン
@@ -26,9 +26,11 @@ struct ContentView: View {
                      https://developer.apple.com/jp/sf-symbols/
                      */
                     Label("300", systemImage: "hourglass.tophalf.fill")
+
                 }
+
                 Spacer()
-                
+
                 VStack(alignment: .trailing) {
                     Text("Seconds Remaining")
                         .font(.caption)
@@ -72,7 +74,9 @@ struct ContentView: View {
 
             HStack {
                 Text("Speaker 1 of 3")
+
                 Spacer()
+
 
                 Button(action: {
                     print("tap")

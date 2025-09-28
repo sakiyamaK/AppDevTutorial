@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 
+    var id: Int
     @State private var error: ErrorWrapper?
 
     var body: some View {

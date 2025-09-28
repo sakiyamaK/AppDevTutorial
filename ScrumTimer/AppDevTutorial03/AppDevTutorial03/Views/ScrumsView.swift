@@ -28,10 +28,10 @@ struct ScrumsView: View {
          「DailyScrumのtitleパラメータを参照してください」
          という意味
         */
-        List(scrums, id: \.title) { scrum in
-            CardView(scrum: scrum)
-                .listRowBackground(scrum.theme.mainColor)
-        }
+//        List(scrums, id: \.title) { scrum in
+//            CardView(scrum: scrum)
+//                .listRowBackground(scrum.theme.mainColor)
+//        }
 
         /*
          表示させるデータがIdentifableに準拠しているなら明示しなくても勝手にデータのidをListのidとして利用する

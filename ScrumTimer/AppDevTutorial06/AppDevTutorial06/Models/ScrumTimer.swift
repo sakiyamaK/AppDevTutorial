@@ -13,7 +13,7 @@ import Foundation
  https://developer.apple.com/documentation/observation
 
  SwiftUIががっつりCombineありきで作られたが、勝手な予想だがCombineは消していくのかもしれない
-公式サンプルはObservableObjectで書かれているがここでは以下の移行手順に習って書き換えたObservationフレームワークを使う
+ 公式サンプルはObservableObjectで書かれているがここでは以下の移行手順に習って書き換えたObservationフレームワークを使う
 
  https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro
  */

@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+
 struct WorkCategoryListView: View {
 
     /*
@@ -77,6 +78,14 @@ struct WorkCategoryListView: View {
              @Relationship(deleteRule: .cascade) の設定により、関連したWorkも自動的に削除
              */
             modelContext.delete(category)
+        }
+    }
+
+    func hoge() {
+        //soto
+        Task {
+            // kakuri
+            try? await modelContext.save()
         }
     }
 }
