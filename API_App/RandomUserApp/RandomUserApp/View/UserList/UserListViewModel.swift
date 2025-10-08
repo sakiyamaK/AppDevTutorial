@@ -12,7 +12,7 @@ final class UserListViewModel {
     // 性別の選択肢
     enum GenderType: CaseIterable, Identifiable {
 
-        case all, male, female
+        case all, male, female //, hoge
 
         var id: String { displayName }
 
@@ -21,6 +21,7 @@ final class UserListViewModel {
             case .all: "全て"
             case .male: "男性"
             case .female: "女性"
+//            case .hoge: "ほげ"
             }
         }
 
@@ -29,6 +30,7 @@ final class UserListViewModel {
             case .all: nil
             case .male: "male"
             case .female: "female"
+//            case .hoge: "hoge"
             }
         }
     }

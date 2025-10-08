@@ -36,7 +36,7 @@ final class API {
 
             // デバッグ用
             // 受け取ったData型をString型に変換してprintする
-            data.printJson()
+//            data.printJson()
 
             let decodedResponse = try JSONDecoder().decode(RandomUserResponse.self, from: data)
             return decodedResponse.results

@@ -49,3 +49,11 @@ API/API.swift
 CacheRandomUserApp/CacheRandomUserApp.xcodeproj
 
 API/API.swift
+
+# テストコード
+
+## 概要
+テストコードを書いてViewModelが常に正しく動くようにする
+
+## 参考
+RandomUserApp/RandomUserApp.xcodeproj
