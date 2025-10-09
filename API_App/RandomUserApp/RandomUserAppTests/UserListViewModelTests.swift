@@ -42,12 +42,11 @@ struct UserListViewModelTests {
 
         let users = viewModel.users
 
-        #expect(
-            users.allSatisfy(
-                {
-                    user in user.gender ==  UserListViewModel.GenderType.male.apiValue
-                })
-        )
+        let bl: Bool = users.allSatisfy({user in
+            user.gender ==  UserListViewModel.GenderType.male.apiValue
+        })
+
+        #expect(bl)
     }
 
     @Test("女性だけ検索")
@@ -71,9 +70,13 @@ struct UserListViewModelTests {
 
     @Test("アメリカだけで検索")
     func searchOnlyUS() async throws {
+
         let viewModel = UserListViewModel()
+
         viewModel.selectedNationality = .us
+
         await viewModel.searchUsers()
+
         let users = viewModel.users
 
         #expect(
@@ -154,6 +157,8 @@ struct UserListViewModelTests {
 
     /*
      タプルで複数の型をひとつにまとめて、さらにその配列をargumentsとする
+
+     タプルとは(a, b) みたいに複数の型を即席でひとつにまとめる記法
 
      タプルごとにテストが動く
      */
