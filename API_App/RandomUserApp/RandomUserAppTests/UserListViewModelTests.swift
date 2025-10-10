@@ -127,7 +127,7 @@ struct UserListViewModelTests {
      */
     @Test(
         "全ての性別のパラメータで検索",
-        arguments: UserListViewModel.GenderType.allCases
+        arguments: UserListViewModel.GenderType.allCases // [.all, .male, .female]
     )
     func search(gender: UserListViewModel.GenderType) async throws {
 

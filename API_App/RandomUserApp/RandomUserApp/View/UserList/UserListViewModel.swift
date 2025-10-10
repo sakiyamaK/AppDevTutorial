@@ -78,7 +78,7 @@ final class UserListViewModel {
 
         do {
             let responseUsers = try await api.fetchUsers(
-                paramter: API.RequestParameter(
+                parameter: API.RequestParameter(
                     gender: selectedGender.apiValue,
                     nationality: selectedNationality.apiValue,
                     resultsCount: 10

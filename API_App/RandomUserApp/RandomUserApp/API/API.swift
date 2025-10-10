@@ -18,8 +18,8 @@ final class API {
         var resultsCount: Int = 10        
     }
 
-    func fetchUsers(paramter: RequestParameter) async throws -> [User] {
-        let requestURL = try makeRequestURL(paramter: paramter)
+    func fetchUsers(parameter: RequestParameter) async throws -> [User] {
+        let requestURL = try makeRequestURL(parameter: parameter)
         // デバッグ用
         print("Fetching users from: \(requestURL.absoluteString)")
 
@@ -49,7 +49,7 @@ final class API {
     }
 
     // hostとパラメータからリクセストするURLを構築する
-    private func makeRequestURL(paramter: RequestParameter) throws -> URL {
+    private func makeRequestURL(parameter: RequestParameter) throws -> URL {
 
         // URLComponentsを使うとパラメータをいい感じにエスケープしてくる
         // エスケープとはURLには使えない文字を別の文字に対応すること
@@ -67,14 +67,14 @@ final class API {
 
         // components.queryItemsに代入する配列を構築していく
         var queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "results", value: "\(paramter.resultsCount)")
+            URLQueryItem(name: "results", value: "\(parameter.resultsCount)")
         ]
 
-        if let gender = paramter.gender, !gender.isEmpty {
+        if let gender = parameter.gender, !gender.isEmpty {
             let queryItem = URLQueryItem(name: "gender", value: gender.lowercased())
             queryItems.append(queryItem)
         }
-        if let nationality = paramter.nationality, !nationality.isEmpty {
+        if let nationality = parameter.nationality, !nationality.isEmpty {
             let queryItem = URLQueryItem(name: "nat", value: nationality.lowercased())
             queryItems.append(queryItem)
         }
