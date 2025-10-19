@@ -18,7 +18,7 @@ Scrumdingerというチームで行う「Daily Scrum（デイリースクラム�
 
 ミーティング履歴の記録
 
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/01.png" width="300">
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/02.png" width="300">
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/03.png" width="300">
-<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/04.png" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/01.png?raw=true" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/02.png?raw=true" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/03.png?raw=true" width="300">
+<img src="https://github.com/sakiyamaK/AppDevTutorial/blob/main/04.png?raw=true" width="300">
