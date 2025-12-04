@@ -10,6 +10,7 @@ import Foundation
 final class API {
     static let shared = API()
 
+    private let apiKey = "" // APIキーが必要ならここ
     private let host = "https://randomuser.me/api/"
 
     struct RequestParameter {
@@ -19,11 +20,12 @@ final class API {
     }
 
     func fetchUsers(parameter: RequestParameter) async throws -> [User] {
-        let requestURL = try makeRequestURL(parameter: parameter)
-        // デバッグ用
-        print("Fetching users from: \(requestURL.absoluteString)")
+        var requestURL = try makeRequestURL(parameter: parameter)
 
         do {
+
+//            let requestURL = URL(string: "https://www.amazon.co.jp/増補改訂第3版-Swift実践入門")!
+
             // (Data, URLResponse)のタプルとして戻り値が得られる
             // Dataは生の01の羅列を集めた型
             // サーバーからの戻り値はどんな形式か実装中に分かるものではないためDataとして受け取るようになってる
@@ -51,6 +53,7 @@ final class API {
     // hostとパラメータからリクセストするURLを構築する
     private func makeRequestURL(parameter: RequestParameter) throws -> URL {
 
+
         // URLComponentsを使うとパラメータをいい感じにエスケープしてくる
         // エスケープとはURLには使えない文字を別の文字に対応すること
         /*
@@ -61,10 +64,10 @@ final class API {
          エスケープするとこうなる
 
          https://www.amazon.co.jp/%E5%A2%97%E8%A3%9C%E6%94%B9%E8%A8%82%E7%AC%AC3%E7%89%88-Swift%E5%AE%9F%E8%B7%B5%E5%85%A5%E9%96%80-%E7%9B%B4%E6%84%9F%E7%9A%84%E3%81%AA%E6%96%87%E6%B3%95%E3%81%A8%E5%AE%89%E5%85%A8%E6%80%A7%E3%82%92%E5%85%BC%E3%81%AD%E5%82%99%E3%81%88%E3%81%9F%E8%A8%80%E8%AA%9E-PRESS-plus%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/dp/4297112132/ref=sr_1_1_sspa?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=30M1R35Z7D0B8&dib=eyJ2IjoiMSJ9.7VEnHRVLs0Mf5wIuzGzuNunnDG2OawN8Mc3k907606PoygHAuU0QkRVMsdpL52rKTZh6DlW14ssIt5jxo4uQZGq8QBzHptfIV-pqUQ9lABCugyyJ2B7CyHDyB8vTTqEGhnMqwUgllrYr1O5sCa-qPJki12uKNcYw9UMWGMTdXhbNgZ6GtdCzsuUWek7UuB7CNmae60DnW9NtVcGKQ86tmIdhwStJpZBrnLMJQN9bc4uuvop1eoG37qLX3XEhlnLNG431WvUcnla4uIr4i5zTVbMD12_drab0s12JdUeawVE.3IOBv9iVeunn44JPo_l1C8y62swoVt8vRwGyBETLqMk&dib_tag=se&keywords=Swift&qid=1748771703&sprefix=swift%2Caps%2C272&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1
-         */
-        
-        var components = URLComponents(string: host)!
 
+         */
+
+        var components = URLComponents(string: host)!
         // components.queryItemsに代入する配列を構築していく
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "results", value: "\(parameter.resultsCount)")
@@ -84,10 +87,25 @@ final class API {
 
         // componentsに設定されているパラメータ等からURLを生成する
         // 不正な状態になっていたらnilとなる
-        guard let url = components.url else {
+        guard let _url = components.url else {
             throw NetworkError.invalidURL
         }
-        return url
+
+        if !apiKey.isEmpty {
+            // ヘッダ情報を登録する必要があるならここ
+            var requestURL = URLRequest(url: _url)
+            requestURL.httpMethod = "GET"
+            // 例えばAPIキーなど
+            requestURL.setValue(apiKey, forHTTPHeaderField: "X-API-Key")
+
+            guard let url = requestURL.url else {
+                throw NetworkError.invalidURL
+            }
+            return url
+        } else {
+            //　ヘッダ情報が不要ならそのまま_urlを返す
+            return _url
+        }
     }
 }
 

@@ -28,8 +28,8 @@ struct User: Codable, Identifiable {
         }
 
         func hash(into hasher: inout Hasher) {
-            name?.hash(into: &hasher)
-            value?.hash(into: &hasher)
+            hasher.combine(name)
+            hasher.combine(value)
         }
     }
 
