@@ -10,8 +10,8 @@ import Foundation
 final class API {
     static let shared = API()
 
-    private let apiKey = "" // APIキーが必要ならここ
-    private let host = "https://randomuser.me/api/"
+    private let apiKey = "kKmcTu2Rc6a16T4juPzMKa6wDx0tuJIC7RRfG8bZ" // APIキーが必要ならここ
+    private let host = " https://wxtech.weathernews.com/api/v1/ss1wx"
 
     struct RequestParameter {
         let gender: String?
@@ -20,7 +20,7 @@ final class API {
     }
 
     func fetchUsers(parameter: RequestParameter) async throws -> [User] {
-        var requestURL = try makeRequestURL(parameter: parameter)
+        let urlRequest = try makeRequestURL(parameter: parameter)
 
         do {
 
@@ -29,7 +29,7 @@ final class API {
             // (Data, URLResponse)のタプルとして戻り値が得られる
             // Dataは生の01の羅列を集めた型
             // サーバーからの戻り値はどんな形式か実装中に分かるものではないためDataとして受け取るようになってる
-            let (data, response) = try await URLSession.shared.data(from: requestURL)
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
 
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
@@ -51,7 +51,7 @@ final class API {
     }
 
     // hostとパラメータからリクセストするURLを構築する
-    private func makeRequestURL(parameter: RequestParameter) throws -> URL {
+    private func makeRequestURL(parameter: RequestParameter) throws -> URLRequest {
 
 
         // URLComponentsを使うとパラメータをいい感じにエスケープしてくる
@@ -87,25 +87,18 @@ final class API {
 
         // componentsに設定されているパラメータ等からURLを生成する
         // 不正な状態になっていたらnilとなる
-        guard let _url = components.url else {
+        guard let url = components.url else {
             throw NetworkError.invalidURL
         }
+        // ヘッダ情報を登録する必要があるならここ
+        var urlRequest = URLRequest(url: url)
 
         if !apiKey.isEmpty {
-            // ヘッダ情報を登録する必要があるならここ
-            var requestURL = URLRequest(url: _url)
-            requestURL.httpMethod = "GET"
+            urlRequest.httpMethod = "GET"
             // 例えばAPIキーなど
-            requestURL.setValue(apiKey, forHTTPHeaderField: "X-API-Key")
-
-            guard let url = requestURL.url else {
-                throw NetworkError.invalidURL
-            }
-            return url
-        } else {
-            //　ヘッダ情報が不要ならそのまま_urlを返す
-            return _url
+            urlRequest.setValue(apiKey, forHTTPHeaderField: "X-API-Key")
         }
+        return urlRequest
     }
 }
 
